@@ -1,0 +1,8 @@
+dist
+coverage
+.next
+.vscode
+.nyc_output
+.github
+node_modules
+tmp
