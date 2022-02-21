@@ -24,7 +24,7 @@ const Home: NextPage = () => {
   } = useForm<User>({
     resolver: userSchema,
   });
-  const { data:users } = useGetUser()
+  const { data:users, isLoading } = useGetUser()
   
   const {mutateAsync:deleteMutation, isLoading:deleteLoading, error:deleteError} = useDeleteUser()
 
@@ -38,7 +38,7 @@ const Home: NextPage = () => {
     reset({})
     setEdit(false)
   }
-
+  if (isLoading)return <div className="w-screen h-screen flex items-center bg-[#140532]  justify-center text-white">loading...</div>
   if (deleteLoading) return <div className='w-full h-screen bg-[#140532] flex items-center justify-center'> <div className='px-3 py-3 text-white rounded-full bg-[#FC3178] '><ImSpinner11 className='text-white animate-spin '/></div></div>
   if (deleteError) return <div className='w-full h-screen bg-[#140532] flex items-center justify-center'> <div className='px-3 py-3  rounded-full text-[#FC3178] '>sorry someting went wrong</div></div>
   return (
